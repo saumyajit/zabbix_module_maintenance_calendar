@@ -1,5 +1,5 @@
 <?php
-namespace Modules;
+namespace maintenance_calendar;
 
 use CController;
 use CControllerResponseData;
@@ -10,7 +10,7 @@ class MaintenanceCalendar extends CController {
     }
 
     protected function checkPermissions() {
-        return true; // Adjust permission checks as needed
+        return true; // Adjust based on your permission strategy
     }
 
     protected function doAction() {
@@ -20,12 +20,10 @@ class MaintenanceCalendar extends CController {
     }
 
     private function fetchMaintenanceData() {
-        // Build the API URL dynamically based on current server
         $scheme = isset($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : 'http';
         $host = $_SERVER['HTTP_HOST'];
         $apiUrl = "$scheme://$host/api_jsonrpc.php";
 
-        // Get Zabbix session auth token from PHP session
         session_start();
         if (!isset($_SESSION['zbx_session'])) {
             return ['error' => 'Authentication token not found. Please login to Zabbix.'];
