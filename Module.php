@@ -11,7 +11,7 @@ class Module extends CModule {
             ->findOrAdd(_('Reports'))
                 ->getSubmenu()
                     ->insertAfter(_('Notification'),
-                        (new CMenuItem(_('Calendario de Manutenções')))->setAction('maintenance.calendar')
+                        (new CMenuItem(_('Maintenance Calendar')))->setAction('maintenance.calendar')
                     );
     }
 }
