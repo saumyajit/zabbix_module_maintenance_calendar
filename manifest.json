@@ -1,0 +1,12 @@
+{
+  "name": "maintenance_schedule",
+  "version": "1.0",
+  "author": "Saumyajit Pramanik",
+  "description": "Zabbix module to display maintenance schedule calendar",
+  "license": "GPL-2.0",
+  "type": "module",
+  "require": {
+    "zabbix": ">=7.0"
+  },
+  "main": "Module.php"
+}
