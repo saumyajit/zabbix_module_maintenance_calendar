@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Maintenance Calendar</title>
+    <title><?php echo _('Maintenance Calendar'); ?></title>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
     <style>
         html, body {
