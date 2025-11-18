@@ -20,8 +20,8 @@ class MaintenanceCalendar extends CController {
     }
 
     protected function doAction(): void {
-        // Logic to fetch scheduled maintenance data via Zabbix API
-        $maintenanceData = []; // Implement logic here to retrieve scheduled maintenance data
+        // Logic to get the data of scheduled maintenance via Zabbix API
+        $maintenanceData = []; // Implement the logic to fetch maintenance data
         
         $data = ['maintenance_data' => $maintenanceData];
         $response = new CControllerResponseData($data);
