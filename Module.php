@@ -17,41 +17,16 @@ declare(strict_types = 1);
 namespace Modules\maintenance_calendar;
 
 use APP;
-use CController as CAction;
-use CWebUser;
-use Zabbix\Core\CModule;
-
-/**
- * Please see Core\CModule class for additional reference.
- */
-class Module extends CModule {
-
-        /**
-         * Initialize module.
-         */
-        public function init(): void {
-                // guests and non-admins don't need this host group editor
-                if (CWebUser::isGuest() || CWebUser::getType() == USER_TYPE_ZABBIX_USER) {
-                        return;
-                }
-                // Initialize main menu (CMenu class instance).
-                APP::Component()->get('menu.main')->findOrAdd(_('Reports'))->getSubmenu()->add((new \CMenuItem(_('Maintenance Calendar')))->setAction('maintenance.calendar'));
-        }
-
-        /**
-         * Event handler, triggered before executing the action.
-         *
-         * @param CAction $action  Action instance responsible for current request.
-         */
-        public function onBeforeAction(CAction $action): void {
-        }
-
-        /**
-         * Event handler, triggered on application exit.
-         *
-         * @param CAction $action  Action instance responsible for current request.
-         */
-        public function onTerminate(CAction $action): void {
-        }
-
+ 
+class Module extends \Zabbix\Core\CModule {
+	public function init(): void {
+		// Initialize main menu (CMenu class instance).
+		APP::Component()->get('menu.main')
+			->findOrAdd(_('Reports'))
+				->getSubmenu()
+     ->add((new \CMenuItem(_('Maintenance Calendar')))
+						->setAction('maintenance.calendar')
+					);
+	}
 }
+?>
