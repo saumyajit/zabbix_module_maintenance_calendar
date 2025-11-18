@@ -1,17 +1,16 @@
 {
-	"manifest_version": 2,
-	"id": "mw_cal",
-	"name": "Maintenance Calendar",
-	"version": "1.0",
+    "manifest_version": 2.0,
+    "id": "maintenance-calendar",
+    "name": "Maintennce Calendar",
+    "version": "1.0",
 	"namespace": "MaintenanceCalendar",
-	"author": "Saumyajit Pramanik",
-	"url": "https://www.zabbix.com/",
-	"description": "Zabbix module to display maintenance schedule calendar",
-  "actions": {
-    "maintenance.calendar": {
-      "class": "MaintenanceCalendar",
-      "view": "maintenance.calendar"
+    "author": "Saumyajit Pramanik",
+    "url": "https://www.zabbix.com/",
+    "description": "Zabbix module to display maintenance schedule calendar",
+    "actions": {
+        "maintenance.calendar": {
+            "class": "MaintenanceCalendar",
+            "view": "maintenance.calendar"
+        }
     }
-  }
-
 }
