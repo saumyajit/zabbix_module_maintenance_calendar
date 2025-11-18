@@ -1,12 +1,17 @@
 {
-  "name": "maintenance_schedule",
-  "version": "1.0",
-  "author": "Saumyajit Pramanik",
-  "description": "Zabbix module to display maintenance schedule calendar",
-  "license": "GPL-2.0",
-  "type": "module",
-  "require": {
-    "zabbix": ">=7.0"
-  },
-  "main": "Module.php"
+	"manifest_version": 2,
+	"id": "mw_cal",
+	"name": "Maintenance Calendar",
+	"version": "1.0",
+	"namespace": "maintenance_calendar",
+	"author": "Saumyajit Pramanik",
+	"url": "https://www.zabbix.com/",
+	"description": "Zabbix module to display maintenance schedule calendar",
+  "actions": {
+    "maintenance.calendar": {
+      "class": "MaintenanceCalendar",
+      "view": "views.maintenance.calendar"
+    }
+  }
+
 }
