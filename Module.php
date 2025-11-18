@@ -14,7 +14,7 @@
 
 declare(strict_types = 1);
 
-namespace Modules\maintenance_calendar;
+namespace Modules\mwcal;
 
 use APP;
  
