@@ -1,5 +1,5 @@
 <?php
-namespace maintenance_calendar;
+namespace Modules\maintenance_calendar;
 
 use CController;
 use CControllerResponseData;
