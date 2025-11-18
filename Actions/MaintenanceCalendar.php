@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\mwcal\Actions;
+namespace Modules\MaintenanceCalendar\Actions;
 
 use CController,
     CControllerResponseData;
