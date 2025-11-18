@@ -1,69 +1,30 @@
 <?php
-declare(strict_types = 1);
+
 namespace Modules\maintenance_calendar\Actions;
 
-use CController;
-use CControllerResponseData;
+use CController,
+    CControllerResponseData;
 
 class MaintenanceCalendar extends CController {
-    public function init() {
+
+    public function init(): void {
         $this->disableCsrfValidation();
     }
 
-    protected function checkPermissions() {
-        return true; // Adjust based on your permission strategy
+    protected function checkInput(): bool {
+        return true;
     }
 
-    protected function doAction() {
-        $data = $this->fetchMaintenanceData();
+    protected function checkPermissions(): bool {
+        return true;
+    }
+
+    protected function doAction(): void {
+        // Logic to fetch scheduled maintenance data via Zabbix API
+        $maintenanceData = []; // Implement logic here to retrieve scheduled maintenance data
+        
+        $data = ['maintenance_data' => $maintenanceData];
         $response = new CControllerResponseData($data);
         $this->setResponse($response);
-    }
-
-    private function fetchMaintenanceData() {
-        $scheme = isset($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : 'http';
-        $host = $_SERVER['HTTP_HOST'];
-        $apiUrl = "$scheme://$host/zabbix/api_jsonrpc.php";
-
-        session_start();
-        if (!isset($_SESSION['zbx_session'])) {
-            return ['error' => 'Authentication token not found. Please login to Zabbix.'];
-        }
-        $authToken = $_SESSION['zbx_session'];
-
-        $request = json_encode([
-            'jsonrpc' => '2.0',
-            'method' => 'maintenance.get',
-            'params' => [
-                'output' => 'extend',
-                'selectTimeperiods' => 'extend',
-                'selectHosts' => ['hostid', 'host']
-            ],
-            'auth' => $authToken,
-            'id' => 1
-        ]);
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $apiUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-        $result = curl_exec($ch);
-        if (curl_errno($ch)) {
-            $error = curl_error($ch);
-            curl_close($ch);
-            return ['error' => "Curl error: $error"];
-        }
-        curl_close($ch);
-
-        $response = json_decode($result, true);
-
-        if (isset($response['result'])) {
-            return $response['result'];
-        } elseif (isset($response['error'])) {
-            return ['error' => $response['error']['data'] ?? 'Unknown API error'];
-        } else {
-            return ['error' => 'Unknown error fetching maintenance data'];
-        }
     }
 }
